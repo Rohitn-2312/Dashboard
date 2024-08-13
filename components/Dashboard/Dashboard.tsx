@@ -16,7 +16,6 @@ const Dashboard = () => {
         <button><TfiReload /></button>
         <button><BsThreeDotsVertical /></button>
         <button><FaClock /><PiLineVerticalLight />Last 2 days <MdKeyboardArrowDown /></button>
-
       </div>
     </div>
   )
