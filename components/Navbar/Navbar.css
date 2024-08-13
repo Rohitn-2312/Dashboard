@@ -1,0 +1,47 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+  }
+  
+  .right-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    color: grey;
+  }
+  
+  .input {
+    padding: 5px 5px 5px 30px; /* Adjust padding to make space for the icon */
+  }
+  
+  .icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    margin-left: 15px;
+  }
+  
+  .breadcrumb {
+    color: grey;
+    font-size: 12px;
+  }
+  
+  .breadcrumb span {
+    font-weight: bold;
+    color: blue;
+  }
