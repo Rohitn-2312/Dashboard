@@ -1,0 +1,20 @@
+.dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+    background-color: #D1E9F6;
+}
+.title{
+    font-size: 18px;
+    font-weight:bold;
+    color: #0D1B2A;
+}
+.buttons button{
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

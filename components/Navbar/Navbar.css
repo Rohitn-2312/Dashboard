@@ -24,7 +24,10 @@
   }
   
   .input {
-    padding: 5px 5px 5px 30px; /* Adjust padding to make space for the icon */
+    padding: 5px 5px 5px 30px; 
+    border-color: #CDFCF6;
+    background-color: #F7FBFC;
+    border-radius: 5px;
   }
   
   .icons {
