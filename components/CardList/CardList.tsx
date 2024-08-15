@@ -19,16 +19,30 @@ const CardList = () => {
   };
 
   const handleAddCard = () => {
-    setCards([...cards, newCard]);
-    setNewCard({ title: '', description: '', image: '' });
-    setShowForm(false);
-    checkScrollPosition();
+    if (showForm) {
+      if (newCard.title.trim() && newCard.description.trim() && newCard.image.trim()) {
+        setCards([...cards, newCard]);
+        setNewCard({ title: '', description: '', image: '' });
+        setShowForm(false);
+        checkScrollPosition();
+      } else {
+        // If form fields are empty, do not hide the form
+        alert("Please fill in all fields.");
+      }
+    } else {
+      setShowForm(true);
+    }
   };
 
   const handleDeleteCard = (index: number) => {
     const updatedCards = cards.filter((_, i) => i !== index);
     setCards(updatedCards);
     checkScrollPosition();
+  };
+
+  const handleCancel = () => {
+    setShowForm(false);
+    setNewCard({ title: '', description: '', image: '' });
   };
 
   const scrollLeft = () => {
@@ -68,8 +82,8 @@ const CardList = () => {
             </div>
           </div>
         ))}
-        <div className="card add-card" onClick={() => setShowForm(true)}>
-          <h3>Add Widget</h3>
+        <div className="card add-card" onClick={handleAddCard}>
+          <h3>{showForm ? 'Cancel' : 'Add Widget'}</h3>
         </div>
       </div>
       {!isAtStart && <button className="carousel-button left" onClick={scrollLeft}>{"<"}</button>}
@@ -98,6 +112,7 @@ const CardList = () => {
             onChange={handleInputChange}
           />
           <button type="button" onClick={handleAddCard}>Add Card</button>
+          <button type="button" onClick={handleCancel}>Cancel</button>
         </div>
       )}
     </div>

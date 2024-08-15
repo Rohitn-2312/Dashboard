@@ -23,6 +23,10 @@ const Dashboard = () => {
       <h5 className='card-heading'>CSPM Executive Dashboard</h5>
       <CardList />
     </div>
+    <div>
+      <h5 className='card-heading'>CWPP Dashboard</h5>
+      <CardList />
+    </div>
     </div>
   )
 }
