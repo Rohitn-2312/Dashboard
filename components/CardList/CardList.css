@@ -130,3 +130,30 @@
 .carousel-button:hover {
   background: rgba(0, 0, 0, 0.8);
 }
+
+/* Responsive design for small devices */
+@media (max-width: 768px) {
+  .card-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .add-card {
+    width: 100%;
+    height: auto;
+  }
+}
