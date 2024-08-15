@@ -19,3 +19,10 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.card-heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 22px;
+    margin-bottom: -10px;   
+}

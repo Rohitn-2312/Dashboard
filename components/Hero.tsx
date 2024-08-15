@@ -7,8 +7,9 @@ const Hero = () => {
   return (
     <div>
       <Navbar />
+      <div style={{ backgroundColor: '#D1E9F6' }}>
       <Dashboard />
-      <CardList />
+      </div>
     </div>
   )
 }
