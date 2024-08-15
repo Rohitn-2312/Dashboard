@@ -1,107 +1,66 @@
-.card-list-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  
-  .card-list {
-    display: flex;
-    transition: transform 0.3s ease;
-  }
-  
-  .card-wrapper {
-    flex: 0 0 100%;
-    max-width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    transition: opacity 0.3s ease;
-    opacity: 0;
-  }
-  
-  .card-wrapper.active {
-    opacity: 1;
-  }
-  
-  .card {
-    display: flex;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-image {
-    flex: 0 0 40%;
-    max-width: 40%;
-  }
-  
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .card-content {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .carousel-button.prev {
-    left: 10px;
-  }
-  
-  .carousel-button.next {
-    right: 10px;
-  }
-  
-  .add-card-button {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .add-card-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 400px;
-    margin: 20px auto;
-  }
-  
-  .add-card-form input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .add-card-form button {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .add-card-form button[type="button"] {
-    background-color: #6c757d;
-  }
+/* Container for the card list */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Styling for each card */
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+}
+
+/* Styling for the "Add Widget" card */
+.add-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 200px;
+}
+
+/* Styling for the form to add a new card */
+.add-card-form {
+  display: none; /* Initially hidden */
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-card-form.active {
+  display: flex; /* Show when active */
+}
+
+/* Input fields in the form */
+.add-card-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Button in the form */
+.add-card-form button {
+  padding: 10px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-card-form button:hover {
+  background: #0056b3;
+}
