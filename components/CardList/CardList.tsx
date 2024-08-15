@@ -9,14 +9,9 @@ const CardList = () => {
   ]);
   const [showForm, setShowForm] = useState(false);
   const [newCard, setNewCard] = useState({ title: '', description: '', image: '' });
+  const cardListRef = useRef<HTMLDivElement>(null);
   const [isAtStart, setIsAtStart] = useState(true);
   const [isAtEnd, setIsAtEnd] = useState(false);
-
-  const cardListRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    handleScrollButtons();
-  }, [cards]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -27,16 +22,28 @@ const CardList = () => {
     setCards([...cards, newCard]);
     setNewCard({ title: '', description: '', image: '' });
     setShowForm(false);
+    checkScrollPosition();
   };
 
-  const handleScroll = (direction: 'left' | 'right') => {
+  const handleDeleteCard = (index: number) => {
+    const updatedCards = cards.filter((_, i) => i !== index);
+    setCards(updatedCards);
+    checkScrollPosition();
+  };
+
+  const scrollLeft = () => {
     if (cardListRef.current) {
-      const scrollAmount = direction === 'left' ? -cardListRef.current.clientWidth : cardListRef.current.clientWidth;
-      cardListRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      cardListRef.current.scrollBy({ left: -400, behavior: 'smooth' });
     }
   };
 
-  const handleScrollButtons = () => {
+  const scrollRight = () => {
+    if (cardListRef.current) {
+      cardListRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+    }
+  };
+
+  const checkScrollPosition = () => {
     if (cardListRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = cardListRef.current;
       setIsAtStart(scrollLeft === 0);
@@ -44,39 +51,29 @@ const CardList = () => {
     }
   };
 
+  useEffect(() => {
+    checkScrollPosition();
+  }, [cards]);
+
   return (
     <div className="card-list-container">
-      {!isAtStart && (
-        <button className="carousel-button left" onClick={() => handleScroll('left')}>
-          &lt;
-        </button>
-      )}
-      <div className="card-list" ref={cardListRef} onScroll={handleScrollButtons}>
+      <div className="card-list" ref={cardListRef} onScroll={checkScrollPosition}>
         {cards.map((card, index) => (
-          <div className="card-wrapper" key={index}>
-            <div className="card">
-              <img src={card.image} alt={card.title} />
-              <div className="card-content">
-                <h3>{card.title}</h3>
-                <p>{card.description}</p>
-              </div>
+          <div className="card" key={index}>
+            <img src={card.image} alt={card.title} />
+            <div>
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+              <button className="card-delete-button" onClick={() => handleDeleteCard(index)}>Delete</button>
             </div>
-            <button className="delete-button" onClick={() => setCards(cards.filter((_, i) => i !== index))}>
-              Delete Card
-            </button>
           </div>
         ))}
-        <div className="card-wrapper add-card" onClick={() => setShowForm(true)}>
-          <div className="card">
-            <h3>Add Widget</h3>
-          </div>
+        <div className="card add-card" onClick={() => setShowForm(true)}>
+          <h3>Add Widget</h3>
         </div>
       </div>
-      {!isAtEnd && (
-        <button className="carousel-button right" onClick={() => handleScroll('right')}>
-          &gt;
-        </button>
-      )}
+      {!isAtStart && <button className="carousel-button left" onClick={scrollLeft}>{"<"}</button>}
+      {!isAtEnd && <button className="carousel-button right" onClick={scrollRight}>{">"}</button>}
       {showForm && (
         <div className="add-card-form active">
           <input

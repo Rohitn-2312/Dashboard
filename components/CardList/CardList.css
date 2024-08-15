@@ -1,93 +1,124 @@
+/* Container for the card list with carousel functionality */
 .card-list-container {
   position: relative;
   width: 100%;
   overflow: hidden;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .card-list {
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: auto;
+  gap: 20px;
+  transition: transform 0.3s ease-in-out;
+  overflow-x: auto; /* Allow horizontal scrolling */
   scroll-behavior: smooth;
 }
 
-.card-wrapper {
-  flex: 0 0 auto;
-  width: 300px;
-  padding: 10px;
-  box-sizing: border-box;
-  margin-right: 10px;
-  position: relative;
-}
-
 .card {
-  display: flex;
-  align-items: center;
   background: #fff;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  min-height: 150px;
-  max-height: 180px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 400px;
+  height: 180px;
+  box-sizing: border-box;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .card img {
-  width: 40%;
-  border-radius: 8px;
-  margin-right: 10px;
+  width: 30%;
+  height: 100%;
   object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
 }
 
-.card-content {
-  flex: 1;
-  overflow: hidden;
-}
-
-.card-content h3, .card-content p {
+.card h3, .card p {
   margin: 0;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+.card p {
+  color: #666;
+}
+
+.card-delete-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.card-delete-button:hover {
+  background: #e60000;
 }
 
 .add-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   background: #f0f0f0;
   border: 1px dashed #ccc;
-  min-height: 150px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 400px;
+  height: 180px;
+  flex-shrink: 0;
 }
 
 .add-card-form {
-  display: none; /* Initially hidden */
+  display: none;
   flex-direction: column;
   gap: 10px;
 }
 
 .add-card-form.active {
-  display: flex; /* Show when active */
+  display: flex;
 }
 
-.add-card-form input, .add-card-form button {
+.add-card-form input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
+.add-card-form button {
+  padding: 10px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-card-form button:hover {
+  background: #0056b3;
+}
+
+/* Carousel navigation buttons */
 .carousel-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  padding: 10px;
   cursor: pointer;
   z-index: 1000;
 }
@@ -100,24 +131,43 @@
   right: 0;
 }
 
-.delete-button {
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 5px;
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.carousel-button:hover {
+  background: rgba(0, 0, 0, 0.8);
 }
 
+/* Hide carousel buttons if not needed */
+.carousel-button.hidden {
+  display: none;
+}
+
+/* Responsive design for small devices */
 @media (max-width: 768px) {
   .card-list {
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible; /* Remove carousel buttons for small screens */
   }
+
+  .card {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .add-card {
+    width: 100%;
+    height: auto;
+  }
+
   .carousel-button {
-    display: none;
+    display: none; /* Hide carousel buttons on small devices */
   }
 }
