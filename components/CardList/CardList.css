@@ -14,6 +14,12 @@
   transition: transform 0.3s ease-in-out;
   overflow-x: auto; /* Allow horizontal scrolling */
   scroll-behavior: smooth;
+  -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
+  scrollbar-width: none;  /* Hide scrollbar in Firefox */
+}
+
+.card-list::-webkit-scrollbar {
+  display: none;  /* Hide scrollbar in Chrome, Safari, and Opera */
 }
 
 .card {
