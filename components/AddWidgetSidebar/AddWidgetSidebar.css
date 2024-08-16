@@ -1,0 +1,56 @@
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .add-widget-sidebar {
+    width: 300px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+  
+  .add-widget-sidebar h2 {
+    margin-bottom: 20px;
+  }
+  
+  .add-widget-sidebar form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .add-widget-sidebar select,
+  .add-widget-sidebar input,
+  .add-widget-sidebar button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .add-widget-sidebar button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .add-widget-sidebar button:hover {
+    background-color: #0056b3;
+  }
+  
+  .close-button {
+    margin-top: 10px;
+    background-color: #dc3545 !important;
+  }
+  
+  .close-button:hover {
+    background-color: #c82333 !important;
+  }

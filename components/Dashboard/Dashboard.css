@@ -1,206 +1,39 @@
-/* Dashboard Title and Buttons */
 .dashboard {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .title {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .buttons {
-    display: flex;
-    align-items: center;
-  }
-  
-  .buttons button {
-    margin-left: 10px;
-    padding: 8px 12px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .buttons button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Card Heading */
-  .card-heading {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 20px 0 10px;
-  }
-  
-  /* Sidebar for Adding Widgets */
-  .sidebar {
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 300px;
-    height: 100%;
-    background-color: #f4f4f4;
-    padding: 20px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-  }
-  
-  .sidebar h3 {
-    margin-bottom: 20px;
-  }
-  
-  .category-options button {
-    display: block;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: left;
-    width: 100%;
-  }
-  
-  .category-options button:hover {
-    background-color: #0056b3;
-  }
-  
-  .card-form {
-    margin-top: 20px;
-  }
-  
-  .card-form input {
-    display: block;
-    margin-bottom: 10px;
-    padding: 10px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .card-form button {
-    padding: 10px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .card-form button:hover {
-    background-color: #218838;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .dashboard {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .buttons {
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-  
-    .buttons button {
-      margin: 5px 0;
-      width: 100%;
-      justify-content: center;
-    }
-  
-    .card-heading {
-      font-size: 18px;
-    }
-  
-    .sidebar {
-      width: 100%;
-    }
-  
-    .category-options button {
-      text-align: center;
-    }
-  }
-/* Add Widget Sidebar */
-.sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 100%;
-    background-color: #f4f4f4;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    box-sizing: border-box;
-    z-index: 1000;
-  }
-  
-  .sidebar h3 {
-    margin-top: 0;
-  }
-  
-  .sidebar button {
-    margin-top: 10px;
-    padding: 10px;
-    width: 100%;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .sidebar button:hover {
-    background-color: #0056b3;
-  }
-  
-  .sidebar .form input {
-    margin-top: 10px;
-    padding: 10px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .sidebar .form button {
-    margin-top: 10px;
-    background-color: #28a745;
-  }
-  
-  .sidebar .form button:hover {
-    background-color: #218838;
-  }
-  
-  .sidebar .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  /* Ensure the sidebar scrolls if content overflows */
-  .sidebar {
-    overflow-y: auto;
-  }
-  
-  /* Card List */
-  .card-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-  }
-    
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+}
+
+.buttons button {
+  margin-left: 10px;
+  padding: 8px 12px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.buttons button:hover {
+  background-color: #0056b3;
+}
+
+.card-heading {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px 0 10px;
+}

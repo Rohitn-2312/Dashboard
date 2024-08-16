@@ -7,22 +7,34 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { PiLineVerticalLight } from 'react-icons/pi';
 import { TfiReload } from 'react-icons/tfi';
 import CardList from '../CardList/CardList';
+import AddWidgetSidebar from '../AddWidgetSidebar/AddWidgetSidebar';
 
 const Dashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [categories] = useState([
+    "CSPM Executive Dashboard",
+    "CWPP Dashboard"
+  ]);
 
-  const handleAddWidgetClick = () => {
-    setShowSidebar(true);
-  };
+  const [cards, setCards] = useState<{
+    [key: string]: any[];
+  }>({
+    "CSPM Executive Dashboard": [],
+    "CWPP Dashboard": []
+  });
 
-  const handleCloseSidebar = () => {
+  const handleAddWidget = (category: string | number, newCard: any) => {
+    setCards(prevCards => ({
+      ...prevCards,
+      [category]: [...prevCards[category], newCard]
+    }));
     setShowSidebar(false);
-    setSelectedCategory(null);
   };
 
-  const handleCategorySelect = (category: string) => {
+  const openSidebarForCategory = (category: React.SetStateAction<string>) => {
     setSelectedCategory(category);
+    setShowSidebar(true);
   };
 
   return (
@@ -30,52 +42,29 @@ const Dashboard = () => {
       <div className="dashboard">
         <span className="title">CNAPP Dashboard</span>
         <div className='buttons'>
-          <button onClick={handleAddWidgetClick}>Add Widget +</button>
+          <button onClick={() => setShowSidebar(true)}>Add Widget +</button>
           <button><TfiReload /></button>
           <button><BsThreeDotsVertical /></button>
           <button><FaClock /><PiLineVerticalLight />Last 2 days <MdKeyboardArrowDown /></button>
         </div>
       </div>
-      <div>
-        <h5 className='card-heading'>CSPM Executive Dashboard</h5>
-        <CardList category="CSPM Executive Dashboard" />
-      </div>
-      <div>
-        <h5 className='card-heading'>CWPP Dashboard</h5>
-        <CardList category="CWPP Dashboard" />
-      </div>
-      {showSidebar && (
-        <div className="sidebar">
-          <button className="close-button" onClick={handleCloseSidebar}>✖</button>
-          <h3>Select a Category</h3>
-          <button onClick={() => handleCategorySelect('CSPM Executive Dashboard')}>
-            CSPM Executive Dashboard
-          </button>
-          <button onClick={() => handleCategorySelect('CWPP Dashboard')}>
-            CWPP Dashboard
-          </button>
-          {selectedCategory && (
-            <div className="form">
-              <h4>{selectedCategory}</h4>
-              <input type="text" placeholder="Widget Title" id="widget-title" />
-              <input type="text" placeholder="Widget Description" id="widget-description" />
-              <input type="text" placeholder="Widget Image URL" id="widget-image" />
-              <button onClick={() => {
-                const title = (document.getElementById('widget-title') as HTMLInputElement).value;
-                const description = (document.getElementById('widget-description') as HTMLInputElement).value;
-                const image = (document.getElementById('widget-image') as HTMLInputElement).value;
-                
-                const newCard = { title, description, image };
-                const categoryKey = selectedCategory === 'CSPM Executive Dashboard' ? 'cspmCards' : 'cwppCards';
-                
-                window.dispatchEvent(new CustomEvent('addCard', { detail: { categoryKey, newCard } }));
-                handleCloseSidebar();
-              }}>
-                Create Card
-              </button>
-            </div>
-          )}
+      {categories.map(category => (
+        <div key={category}>
+          <h5 className='card-heading'>{category}</h5>
+          <CardList 
+            category={category} 
+            cards={cards[category]} 
+            onAddWidget={() => openSidebarForCategory(category)}
+          />
         </div>
+      ))}
+      {showSidebar && (
+        <AddWidgetSidebar 
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onClose={() => setShowSidebar(false)}
+          onAddWidget={handleAddWidget}
+        />
       )}
     </div>
   );
