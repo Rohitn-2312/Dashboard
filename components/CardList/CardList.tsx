@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './CardList.css';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaTrash } from 'react-icons/fa';
 
 interface Card {
+  id: string;
   title: string;
   description: string;
   image: string;
@@ -12,27 +13,13 @@ interface CardListProps {
   category: string;
   cards: Card[];
   onAddWidget: () => void;
+  onDeleteCard: (id: string) => void;
 }
 
-const CardList: React.FC<CardListProps> = ({ category, cards, onAddWidget }) => {
+const CardList: React.FC<CardListProps> = ({ category, cards, onAddWidget, onDeleteCard }) => {
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(false);
   const cardListRef = useRef<HTMLDivElement>(null);
-
-  const demoCards: Card[] = [
-    { 
-      title: 'Demo Card 1', 
-      description: 'This is a demo card for ' + category, 
-      image: 'https://via.placeholder.com/150'
-    },
-    { 
-      title: 'Demo Card 2', 
-      description: 'This is another demo card for ' + category, 
-      image: 'https://via.placeholder.com/150'
-    }
-  ];
-
-  const allCards = [...demoCards, ...cards];
 
   const checkScrollButtons = () => {
     if (cardListRef.current) {
@@ -64,13 +51,16 @@ const CardList: React.FC<CardListProps> = ({ category, cards, onAddWidget }) => 
         </button>
       )}
       <div className="card-list" ref={cardListRef} onScroll={checkScrollButtons}>
-        {allCards.map((card, index) => (
-          <div className="card" key={index}>
+        {cards.map((card) => (
+          <div className="card" key={card.id}>
             <img src={card.image} alt={card.title} />
             <div className="card-content">
               <h3>{card.title}</h3>
               <p>{card.description}</p>
             </div>
+            <button className="delete-button" onClick={() => onDeleteCard(card.id)}>
+              <FaTrash />
+            </button>
           </div>
         ))}
         <div className="card add-card" onClick={onAddWidget}>

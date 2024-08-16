@@ -1,16 +1,23 @@
+/* Dashboard.css */
+
+.dashboard-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #e6f2ff;
+}
+
 .dashboard {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
+  margin-bottom: 20px;
 }
 
 .title {
   font-size: 24px;
   font-weight: bold;
-  color: #343a40;
+  color: #333;
 }
 
 .buttons {
@@ -29,7 +36,6 @@
   font-size: 14px;
   display: flex;
   align-items: center;
-  transition: background-color 0.3s ease;
 }
 
 .buttons button:hover {
@@ -40,8 +46,14 @@
   font-size: 20px;
   font-weight: bold;
   margin: 20px 0 10px;
-  padding: 0 20px;
-  color: #495057;
+  padding: 10px;
+  background-color: #c1dbff;
+  border-radius: 5px;
+  color: #333;
+}
+
+.card-list-container {
+  margin-bottom: 30px;
 }
 
 @media (max-width: 768px) {
@@ -50,18 +62,14 @@
     align-items: flex-start;
   }
 
-  .title {
-    margin-bottom: 10px;
-  }
-
   .buttons {
-    width: 100%;
-    justify-content: space-between;
+    margin-top: 10px;
+    flex-wrap: wrap;
   }
 
   .buttons button {
+    margin-top: 5px;
     margin-left: 0;
-    padding: 6px 10px;
-    font-size: 12px;
+    margin-right: 10px;
   }
 }
