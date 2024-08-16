@@ -57,10 +57,10 @@ const Dashboard = () => {
     "CWPP Dashboard": [...initialDemoCards["CWPP Dashboard"]]
   });
 
-  const handleAddWidget = (category: string, newCard: { id: string; title: string; description: string; image: string; }) => {
+  const handleAddWidget = (category: string, widget: { id: string; title: string; description: string; image: string; }) => {
     setCards(prevCards => ({
       ...prevCards,
-      [category]: [...prevCards[category], { ...newCard, id: Date.now().toString() }]
+      [category]: [...prevCards[category], { ...widget, id: Date.now().toString() }]
     }));
     setShowSidebar(false);
   };
@@ -101,11 +101,11 @@ const Dashboard = () => {
       ))}
       {showSidebar && (
         <AddWidgetSidebar 
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onClose={() => setShowSidebar(false)}
-          onAddWidget={handleAddWidget}
-        />
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onClose={() => setShowSidebar(false)}
+        onAddWidget={(category, newCard) => handleAddWidget(category, { ...newCard, id: Date.now().toString() })}
+      />
       )}
     </div>
   );
