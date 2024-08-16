@@ -50,12 +50,14 @@ const Dashboard = () => {
     ]
   };
 
-  const [cards, setCards] = useState({
+  const [cards, setCards] = useState<{
+    [key: string]: { id: string; title: string; description: string; image: string; }[];
+  }>({
     "CSPM Executive Dashboard": [...initialDemoCards["CSPM Executive Dashboard"]],
     "CWPP Dashboard": [...initialDemoCards["CWPP Dashboard"]]
   });
 
-  const handleAddWidget = (category, newCard) => {
+  const handleAddWidget = (category: string, newCard: { id: string; title: string; description: string; image: string; }) => {
     setCards(prevCards => ({
       ...prevCards,
       [category]: [...prevCards[category], { ...newCard, id: Date.now().toString() }]
@@ -63,14 +65,14 @@ const Dashboard = () => {
     setShowSidebar(false);
   };
 
-  const handleDeleteCard = (category, id) => {
+  const handleDeleteCard = (category: string, id: string) => {
     setCards(prevCards => ({
       ...prevCards,
       [category]: prevCards[category].filter(card => card.id !== id)
     }));
   };
 
-  const openSidebarForCategory = (category) => {
+  const openSidebarForCategory = (category: React.SetStateAction<string>) => {
     setSelectedCategory(category);
     setShowSidebar(true);
   };
