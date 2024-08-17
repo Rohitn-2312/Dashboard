@@ -8,9 +8,7 @@ This project is a dynamic dashboard application built with Next.js. The dashboar
 
 3. **Responsive Design**: The dashboard is designed to be fully responsive, with specific layouts for different screen sizes, including mobile.
 
-4. **State Management**: The Context API is used for efficient state management, handling the addition, deletion, and updating of widgets across the application.
-
-5. **User Experience**: Includes features like a cancel option and a cross icon to close the sidebar without disrupting the user experience.
+4. **User Experience**: Includes features like a cancel option and a cross icon to close the sidebar without disrupting the user experience.
 
 ## Getting Started
 
@@ -18,5 +16,13 @@ To start the development server:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo.git
-   cd your-repo
+   git clone https://github.com/Rohitn-2312/Dashboard.git
+   cd Dashboard
+   
+2. Install dependencies:
+   ```bash
+   npm install
+
+3. Start the development server:
+   ```bash
+   npm run dev
