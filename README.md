@@ -1,3 +1,5 @@
+**Project Link:** https://dashboard-chi-smoky.vercel.app/
+
 # Project Overview
 
 This project is a dynamic dashboard application built with Next.js. The dashboard allows users to add and manage widgets (cards) with ease. Key features include:
