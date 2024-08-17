@@ -1,12 +1,27 @@
-import React from 'react';
+// Navbar.tsx
+'use client'
+import React, { useState } from 'react';
 import { FaSearch, FaBell, FaUser } from 'react-icons/fa';
 import './Navbar.css';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onSearch?: (term: string) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    if (onSearch) {
+      onSearch(e.target.value);
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="breadcrumb">
-        Home { `>`} <span>Dashboard V2</span>
+        Home {'>>'} <span>Dashboard V2</span>
       </div>
       <div className="right-section">
         <div className="search-wrapper">
@@ -14,6 +29,8 @@ const Navbar: React.FC = () => {
             type="text"
             placeholder="Search anything..."
             className="input"
+            value={searchTerm}
+            onChange={handleSearch}
           />
           <FaSearch className="search-icon" />
         </div>
