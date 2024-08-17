@@ -1,8 +1,7 @@
-// AddWidgetSidebar.tsx
-
+'use client'
 import React, { useState, useEffect } from 'react';
 import './AddWidgetSidebar.css';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaTimes, FaPlus } from 'react-icons/fa';
 
 interface AddWidgetSidebarProps {
   allCategories: string[];
@@ -59,67 +58,91 @@ const AddWidgetSidebar: React.FC<AddWidgetSidebarProps> = ({
   return (
     <div className="sidebar-overlay">
       <div className="add-widget-sidebar">
-        <h2>Add Widget</h2>
+        <div className="sidebar-header">
+          <h2>Add Widget</h2>
+          <button className="close-button" onClick={onClose}><FaTimes /></button>
+        </div>
         <form onSubmit={handleSubmit}>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-          >
-            <option value="">Select Category</option>
-            {allCategories.map(cat => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
-          <input
-            type="text"
-            placeholder="Widget Title"
-            value={widgetTitle}
-            onChange={(e) => setWidgetTitle(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Widget Description"
-            value={widgetDescription}
-            onChange={(e) => setWidgetDescription(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Widget Image URL (optional)"
-            value={widgetImage}
-            onChange={(e) => setWidgetImage(e.target.value)}
-          />
-          <button type="submit">Create Widget</button>
-        </form>
-        <button type="button" onClick={() => setShowNewCategoryInput(true)}>Add New Category</button>
-        {showNewCategoryInput && (
-          <div>
+          <div className="form-group">
+            <label htmlFor="category">Category</label>
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="">Select Category</option>
+              {allCategories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="widgetTitle">Widget Title</label>
             <input
+              id="widgetTitle"
               type="text"
-              placeholder="New Category Name"
-              value={newCategory}
-              onChange={(e) => setNewCategory(e.target.value)}
+              placeholder="Enter widget title"
+              value={widgetTitle}
+              onChange={(e) => setWidgetTitle(e.target.value)}
+              required
             />
-            <button type="button" onClick={handleAddCategory}>Create Category</button>
           </div>
-        )}
-        <h3>Manage Categories</h3>
-        {allCategories.map(cat => (
-          <div key={cat} className="category-item">
+          <div className="form-group">
+            <label htmlFor="widgetDescription">Widget Description</label>
+            <textarea
+              id="widgetDescription"
+              placeholder="Enter widget description"
+              value={widgetDescription}
+              onChange={(e) => setWidgetDescription(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="widgetImage">Widget Image URL (optional)</label>
             <input
-              type="checkbox"
-              checked={visibleCategories.includes(cat)}
-              onChange={(e) => onToggleCategory(cat, e.target.checked)}
+              id="widgetImage"
+              type="text"
+              placeholder="Enter image URL"
+              value={widgetImage}
+              onChange={(e) => setWidgetImage(e.target.value)}
             />
-            <span>{cat}</span>
-            <button onClick={() => onDeleteCategory(cat)} className="delete-category">
-              <FaTrash />
-            </button>
           </div>
-        ))}
-        <button className="close-button" onClick={onClose}>Close</button>
+          <button type="submit" className="create-widget-button">Create Widget</button>
+        </form>
+        <div className="category-management">
+          <h3>Manage Categories</h3>
+          <button className="add-category-button" onClick={() => setShowNewCategoryInput(true)}>
+            <FaPlus /> Add New Category
+          </button>
+          {showNewCategoryInput && (
+            <div className="new-category-input">
+              <input
+                type="text"
+                placeholder="New Category Name"
+                value={newCategory}
+                onChange={(e) => setNewCategory(e.target.value)}
+              />
+              <button onClick={handleAddCategory}>Create</button>
+            </div>
+          )}
+          <div className="category-list">
+            {allCategories.map(cat => (
+              <div key={cat} className="category-item">
+                <input
+                  type="checkbox"
+                  checked={visibleCategories.includes(cat)}
+                  onChange={(e) => onToggleCategory(cat, e.target.checked)}
+                  id={`category-${cat}`}
+                />
+                <label htmlFor={`category-${cat}`}>{cat}</label>
+                <button onClick={() => onDeleteCategory(cat)} className="delete-category">
+                  <FaTrash />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

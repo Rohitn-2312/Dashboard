@@ -1,15 +1,14 @@
-// Dashboard.tsx
-
 'use client'
 import React, { useState } from 'react';
 import './Dashboard.css';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { FaClock, FaSearch } from 'react-icons/fa';
+import { FaClock } from 'react-icons/fa';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { PiLineVerticalLight } from 'react-icons/pi';
 import { TfiReload } from 'react-icons/tfi';
 import CardList from '../CardList/CardList';
 import AddWidgetSidebar from '../AddWidgetSidebar/AddWidgetSidebar';
+import Navbar from '../Navbar/Navbar';
 
 const Dashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -114,48 +113,41 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <div className="dashboard">
-        <span className="title">CNAPP Dashboard</span>
-        <div className='buttons'>
-          <div className="search-wrapper">
-            <input
-              type="text"
-              placeholder="Search anything..."
-              className="input"
-              value={searchTerm}
-              onChange={(e) => handleSearch(e.target.value)}
-            />
-            <FaSearch className="search-icon" />
+      <Navbar onSearch={handleSearch} />
+      <div className="dashboard-content">
+        <div className="dashboard-header">
+          <span className="title">CNAPP Dashboard</span>
+          <div className='buttons'>
+            <button onClick={() => setShowSidebar(true)}>Add Widget +</button>
+            <button><TfiReload /></button>
+            <button><BsThreeDotsVertical /></button>
+            <button><FaClock /><PiLineVerticalLight />Last 2 days <MdKeyboardArrowDown /></button>
           </div>
-          <button onClick={() => setShowSidebar(true)}>Add Widget +</button>
-          <button><TfiReload /></button>
-          <button><BsThreeDotsVertical /></button>
-          <button><FaClock /><PiLineVerticalLight />Last 2 days <MdKeyboardArrowDown /></button>
         </div>
-      </div>
-      {visibleCategories.map(category => (
-        <div key={category} className="card-list-container">
-          <h5 className='card-heading'>{category}</h5>
-          <CardList 
-            category={category} 
-            cards={filteredCards[category] || []} 
-            onAddWidget={() => openSidebarForCategory(category)}
-            onDeleteCard={(id) => handleDeleteCard(category, id)}
+        {visibleCategories.map(category => (
+          <div key={category} className="card-list-container">
+            <h5 className='card-heading'>{category}</h5>
+            <CardList 
+              category={category} 
+              cards={filteredCards[category] || []} 
+              onAddWidget={() => openSidebarForCategory(category)}
+              onDeleteCard={(id) => handleDeleteCard(category, id)}
+            />
+          </div>
+        ))}
+        {showSidebar && (
+          <AddWidgetSidebar 
+            allCategories={allCategories}
+            visibleCategories={visibleCategories}
+            selectedCategory={selectedCategory}
+            onClose={() => setShowSidebar(false)}
+            onAddWidget={(category, newCard) => handleAddWidget(category, { ...newCard, id: Date.now().toString() })}
+            onAddCategory={handleAddCategory}
+            onToggleCategory={handleToggleCategory}
+            onDeleteCategory={handleDeleteCategory}
           />
-        </div>
-      ))}
-      {showSidebar && (
-        <AddWidgetSidebar 
-          allCategories={allCategories}
-          visibleCategories={visibleCategories}
-          selectedCategory={selectedCategory}
-          onClose={() => setShowSidebar(false)}
-          onAddWidget={(category, newCard) => handleAddWidget(category, { ...newCard, id: Date.now().toString() })}
-          onAddCategory={handleAddCategory}
-          onToggleCategory={handleToggleCategory}
-          onDeleteCategory={handleDeleteCategory}
-        />
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -1,21 +1,19 @@
-// Navbar.tsx
 'use client'
 import React, { useState } from 'react';
 import { FaSearch, FaBell, FaUser } from 'react-icons/fa';
 import './Navbar.css';
 
 interface NavbarProps {
-  onSearch?: (term: string) => void;
+  onSearch: (term: string) => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-    if (onSearch) {
-      onSearch(e.target.value);
-    }
+    const term = e.target.value;
+    setSearchTerm(term);
+    onSearch(term);
   };
 
   return (

@@ -1,5 +1,4 @@
-// CardList.tsx
-
+'use client'
 import React, { useState, useRef, useEffect } from 'react';
 import './CardList.css';
 import { FaChevronLeft, FaChevronRight, FaTrash } from 'react-icons/fa';

@@ -6,7 +6,6 @@ import CardList from './CardList/CardList'
 const Hero = () => {
   return (
     <div>
-      <Navbar />
       <div style={{ backgroundColor: '#D1E9F6' }}>
       <Dashboard />
       </div>
