@@ -113,7 +113,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <Navbar onSearch={handleSearch} />
+      <Navbar onSearch={handleSearch}/>
       <div className="dashboard-content">
         <div className="dashboard-header">
           <span className="title">CNAPP Dashboard</span>
